@@ -53,9 +53,6 @@ html,body{
     margin: 0rem 0.5rem;
     cursor: pointer;
     transition: all .2s ease-in-out;
-}
-
-#linkWebsite{
     text-decoration: none;
 }
 
