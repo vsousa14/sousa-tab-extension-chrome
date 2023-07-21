@@ -1,7 +1,29 @@
 var categories = [];
 
-function addCategory(){
+function addCategory(cat){
+    if(!categories.includes(cat)){
+        let categoriesWrapper = document.getElementById("selected-Categories");
+        console.log(categoriesWrapper);
+        categories.push(cat);
+        let categoryWrapper = document.createElement("div");
+        categoryWrapper.className = "catSelected";
+        categoryWrapper.id = `category-${cat}`;
+        categoryWrapper.innerText = cat;
+        categoriesWrapper.appendChild(categoryWrapper);
 
+        let delCategory = document.createElement("span");
+        delCategory.className = "material-icons catSelectedDel";
+        delCategory.id = `del-${cat}`;
+        delCategory.innerText = "close";
+        delCategory.onclick = () => {deleteCategory(cat)}
+        categoryWrapper.appendChild(delCategory);
+    }
+}
+
+function deleteCategory(cat){
+    deleteThis = document.getElementById(`category-${cat}`);
+    deleteThis.remove();
+    
 }
 
 

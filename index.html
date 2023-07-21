@@ -31,7 +31,13 @@
                     <span>Select Categories</span>
                     <i></i>
                 </div>
-                <button class="button material-icons" onclick="addCategory()" id="addCategory">add</button>
+                <button class="button material-icons" onclick="addCategory(document.getElementById('category').value)" id="addCategory">add</button>
+            </div>
+            <div class="selected-Categories" id="selected-Categories">
+                <div class="catSelected">
+                    <span class="material-icons catSelectedDel">close</span>
+                    Nature
+                </div>
             </div>
             
         <button class="button" onclick="setup()" id="saveSetup">FINISH</button>
