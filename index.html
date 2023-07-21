@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="js/setup.js"></script>
+    <script src="js/loadLinks.js" defer></script>
+    <script src="js/newLink.js" defer></script>
+    <script src="js/clock.js" defer></script>
+    <script src="js/greeting.js" defer></script>
+    <script src="js/backgroundLoader.js" defer></script>
+    <script src="js/getFavicon.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="setup">
+        <div class="setup-wrapper">
+            <h1>What is your name?</h1>
+            <div class="inputbox">
+                <input required="required" type="text" id="user">
+                <span>Your Name</span>
+                <i></i>
+            </div>
+        <button class="button" onclick="setup()" id="saveSetup">FINISH</button>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id = "clock" onload="currentTime()"></div>
+        <h2 id="greeting">Good evening, Vasco</h2>
+        <div class="links-wrapper" id="linksArea">
+            <a href="https://www.youtube.com" id="linkWebsite" class="link-container">
+                <img data-link="youtube.com"/>
+                <span>Youtube</span>
+            </a>
+            <div class="link-container" id="openNewLinkDialog">
+                <span id="addlink" class="material-icons">add</span>
+                <span>add</span>
+            </div>
+        </div>
+
+            <dialog aria-labelledby="dialog_title" id="newLink">
+                <form >
+                    <p class="inputItems">
+                      <label>
+                        Website Name:</br>
+                        <input type="text" id="newLinkName"/>
+                      </label>
+                      <label>
+                        Link:</br>
+                        <input type="text" id="newLinkUrl"/>
+                      </label>
+                    </p>
+                    <div class="newLinkButtons">
+                      <button value="cancel" formmethod="dialog">Cancel</button>
+                      <button id="confirmBtn" value="default">Confirm</button>
+                    </div>
+                  </form>
+              </dialog>
+
+    </div>
+
+    <script>
+        categoryArr = ["nature","mountains","city","beach","winter","summer","animals"];
+        window.onload = () => {
+            let setupWin = document.getElementById("setup");
+            const username = localStorage.getItem("username");
+            if(!username){
+                setupWin.style.display = "block";
+            }else{
+                setupWin.style.display = "none";
+                let greetingEl = document.getElementById("greeting")
+            greetingEl.innerHTML = `${loadGreeting()}, ${username}`;
+            let randomCat = Math.floor(Math.random() * categoryArr.length);
+            renderItem(categoryArr[randomCat]);
+            loadSavedLinks();
+            let linksWrapper = document.querySelectorAll(".links-wrapper");
+            for(let i = 0; i<=linksWrapper[0].children.length-1; i++){
+                let iconImage = getIcon(linksWrapper[0].children[i].children[0].dataset.link, linksWrapper[0].children[i].children[0]);
+            }
+            }
+        } 
+    </script>
+</body>
+</html>
