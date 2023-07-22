@@ -1,14 +1,13 @@
-var categories = [];
+
 
 function addCategory(cat){
-    if(!categories.includes(cat)){
+    if(!categoryArr.includes(cat)){
         let categoriesWrapper = document.getElementById("selected-Categories");
         console.log(categoriesWrapper);
-        categories.push(cat);
+        categoryArr.push(cat);
         let categoryWrapper = document.createElement("div");
         categoryWrapper.className = "catSelected";
         categoryWrapper.id = `category-${cat}`;
-        categoryWrapper.innerText = cat;
         categoriesWrapper.appendChild(categoryWrapper);
 
         let delCategory = document.createElement("span");
@@ -17,11 +16,20 @@ function addCategory(cat){
         delCategory.innerText = "close";
         delCategory.onclick = () => {deleteCategory(cat)}
         categoryWrapper.appendChild(delCategory);
+        
+        let categoryText = document.createElement("span");
+        categoryText.innerText = cat;
+        categoryText.style.display = "flex";
+        categoryText.style.justifyContent = "center";
+        categoryText.style.alignItems = "center";
+        categoryWrapper.appendChild(categoryText);
     }
 }
 
 function deleteCategory(cat){
     deleteThis = document.getElementById(`category-${cat}`);
+    const indexToRemove = categoryArr.indexOf(cat);
+    categoryArr.splice(indexToRemove, 1);
     deleteThis.remove();
     
 }
@@ -35,10 +43,11 @@ function setup(){
         return;
     }
 
-    if(categories.length <= 0){
-        categories = ["nature","mountains","city","beach","winter","summer","animals"];
+    if(categoryArr.length <= 0){
+        categoryArr = ["nature","mountains","city","beach","winter","summer","animals"];
     }
 
     localStorage.setItem("username",name);
+    localStorage.setItem("categories", JSON.stringify(categoryArr));
     location.reload();
 }
