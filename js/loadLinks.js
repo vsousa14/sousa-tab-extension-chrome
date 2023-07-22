@@ -15,7 +15,6 @@ function loadSavedLinks(){
         return;
     }
 
-   console.log(links);
     for(let l = 0; l<=links.length-1; l++){
         //console.log(links[l]);
         //Create HTML to load all links

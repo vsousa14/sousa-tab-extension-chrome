@@ -26,14 +26,15 @@ newButton.addEventListener("click", () => {
         return;
     }
 
-    let savedLinks = JSON.parse(localStorage.getItem("links")) ;
-    if(!savedLinks){
-        localStorage.setItem("links", JSON.stringify(item));
-    }else{
-        const newLink = [savedLinks, ...[item]];
-    localStorage.setItem("links", JSON.stringify(newLink));
-   
-    }
+    var data = localStorage.getItem('links');
+
+    data = data ? JSON.parse(data) : [];
+
+    data.push(item);
+
+    localStorage.setItem("links", JSON.stringify(data));
+
+
     location.reload();
 
   });
