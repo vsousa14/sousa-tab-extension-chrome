@@ -75,6 +75,8 @@
 
     <script>
 
+       
+
         function generateId(usedIds){
 
         }
@@ -91,8 +93,8 @@
                 setupWin.style.display = "none";
                 let greetingEl = document.getElementById("greeting")
             greetingEl.innerHTML = `${loadGreeting()}, ${username}`;
-            let randomCat = Math.floor(Math.random() * savedCategories.length);
-                renderItem(savedCategories[randomCat]);
+            //let randomCat = Math.floor(Math.random() * savedCategories.length);
+              //  renderItem(savedCategories[randomCat]);
             
             loadSavedLinks();
             let linksWrapper = document.querySelectorAll(".links-wrapper");
@@ -100,6 +102,49 @@
                 let iconImage = getIcon(linksWrapper[0].children[i].children[0].dataset.link, linksWrapper[0].children[i].children[0]);
             }
             }
+            function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+        }
+
+        function formatDate(date) {
+        return (
+            [
+            date.getFullYear(),
+            padTo2Digits(date.getMonth() + 1),
+            padTo2Digits(date.getDate()),
+            ].join('-') +
+            ' ' +
+            [
+            padTo2Digits(date.getHours()),
+            padTo2Digits(date.getMinutes()),
+            padTo2Digits(date.getSeconds()),
+            ].join(':')
+        );
+        }
+
+        // todayDate e tomorrowDate, tem de vir do localStorage, só se nao tiver nada é que seta dados novos
+        let todayDataStorage = localStorage.getItem("lastVisit");
+        let tomorrowDataStorage = localStorage.getItem("nextImageDate");
+        var todayDate = new Date();
+        var tomorrowDate =  new Date();
+        localStorage.setItem("lastVisit",formatDate(todayDate));
+      
+            
+        tomorrowDate.setDate(tomorrowDate.getDate()+1);
+        tomorrowDate.setHours(0,0,0);
+        var lastVisit = localStorage.getItem("lastVisit");
+       
+        
+            if(todayDataStorage < tomorrowDataStorage){
+            //today lower than tomorrow
+            renderItem(null,false);
+        }else{
+            //today after tomorrow
+            let randomCat = Math.floor(Math.random() * savedCategories.length);
+            renderItem(savedCategories[randomCat],true);
+            localStorage.setItem("nextImageDate", formatDate(tomorrowDate));
+        }
+    
         } 
     </script>
 </body>
