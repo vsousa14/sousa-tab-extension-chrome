@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "SOUSA tabs",
+    "description": "Overrides new tab page",
+    "version": "1.0",
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["/js/all.js","/js/backgroundLoader.js", "/js/clock.js", "/js/getFavicon.js", "/js/greeting.js", "/js/loadLinks.js", "/js/newLink.js", "/js/removeLink.js", "/js/setup.js"]
+    }],
+    "icons":{
+        "16": "/images/icon16.png",
+        "48": "/images/icon48.png",
+        "128": "/images/icon128.png"
+    },
+    "chrome_url_overrides" : {
+        "newtab": "index.html"
+      },
+      "permissions": [
+        "scripting"
+      ],
+      "host_permissions": [
+        "https://*/"
+      ]
+  }

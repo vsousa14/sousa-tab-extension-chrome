@@ -1,4 +1,14 @@
+let addCatBtn = document.getElementById("addCategory");
+let setupBtn = document.getElementById("saveSetup");
 
+addCatBtn.onclick = () =>{
+    let categoryNew = document.getElementById('category').value;
+    addCategory(categoryNew);
+}
+
+setupBtn.onclick = () =>{
+    setup();
+}
 
 function addCategory(cat){
     if(!userCategories.includes(cat)){

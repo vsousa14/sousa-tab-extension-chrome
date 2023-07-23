@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New Tab</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <script src="js/setup.js"></script>
+    
+    <script src="js/all.js"></script>
+    <script src="js/removeLink.js" defer></script>
     <script src="js/loadLinks.js" defer></script>
     <script src="js/newLink.js" defer></script>
     <script src="js/clock.js" defer></script>
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="setup">
+    <div id="setup" style="display: none;">
         <div class="setup-wrapper">
             <h1>What is your name?</h1>
             <div class="inputbox">
@@ -31,13 +33,13 @@
                     <span>Select Categories</span>
                     <i></i>
                 </div>
-                <button class="button material-icons" onclick="addCategory(document.getElementById('category').value)" id="addCategory">add</button>
+                <button class="button material-icons" id="addCategory">add</button>
             </div>
             <div class="selected-Categories" id="selected-Categories">
                
             </div>
             
-        <button class="button" onclick="setup()" id="saveSetup">FINISH</button>
+        <button class="button" id="saveSetup">FINISH</button>
         </div>
     </div>
 
@@ -72,80 +74,6 @@
               </dialog>
 
     </div>
-
-    <script>
-
-       
-
-        function generateId(usedIds){
-
-        }
-
-        categoryArr = ["nature","mountains","city","beach","winter","summer","animals"];
-        userCategories = [];
-        var savedCategories = JSON.parse(localStorage.getItem("categories"));
-        window.onload = () => {
-            let setupWin = document.getElementById("setup");
-            const username = localStorage.getItem("username");
-            if(!username){
-                setupWin.style.display = "block";
-            }else{
-                setupWin.style.display = "none";
-                let greetingEl = document.getElementById("greeting")
-            greetingEl.innerHTML = `${loadGreeting()}, ${username}`;
-            //let randomCat = Math.floor(Math.random() * savedCategories.length);
-              //  renderItem(savedCategories[randomCat]);
-            
-            loadSavedLinks();
-            let linksWrapper = document.querySelectorAll(".links-wrapper");
-            for(let i = 0; i<=linksWrapper[0].children.length-1; i++){
-                let iconImage = getIcon(linksWrapper[0].children[i].children[0].dataset.link, linksWrapper[0].children[i].children[0]);
-            }
-            }
-            function padTo2Digits(num) {
-        return num.toString().padStart(2, '0');
-        }
-
-        function formatDate(date) {
-        return (
-            [
-            date.getFullYear(),
-            padTo2Digits(date.getMonth() + 1),
-            padTo2Digits(date.getDate()),
-            ].join('-') +
-            ' ' +
-            [
-            padTo2Digits(date.getHours()),
-            padTo2Digits(date.getMinutes()),
-            padTo2Digits(date.getSeconds()),
-            ].join(':')
-        );
-        }
-
-        // todayDate e tomorrowDate, tem de vir do localStorage, só se nao tiver nada é que seta dados novos
-        let todayDataStorage = localStorage.getItem("lastVisit");
-        let tomorrowDataStorage = localStorage.getItem("nextImageDate");
-        var todayDate = new Date();
-        var tomorrowDate =  new Date();
-        localStorage.setItem("lastVisit",formatDate(todayDate));
-      
-            
-        tomorrowDate.setDate(tomorrowDate.getDate()+1);
-        tomorrowDate.setHours(0,0,0);
-        var lastVisit = localStorage.getItem("lastVisit");
-       
-        
-            if(todayDataStorage < tomorrowDataStorage){
-            //today lower than tomorrow
-            renderItem(null,false);
-        }else{
-            //today after tomorrow
-            let randomCat = Math.floor(Math.random() * savedCategories.length);
-            renderItem(savedCategories[randomCat],true);
-            localStorage.setItem("nextImageDate", formatDate(tomorrowDate));
-        }
-    
-        } 
-    </script>
+    <script src="js/setup.js"></script>
 </body>
 </html>

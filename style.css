@@ -88,6 +88,7 @@ html,body{
 }
 
 .link-container{
+  display: block;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -97,6 +98,20 @@ html,body{
     transition: all .2s ease-in-out;
     text-decoration: none;
 }
+
+.link-remove{
+  display: none;
+  font-size: 17px;
+  position: absolute;
+  margin-top: -0.6rem;
+  margin-left: 2rem;
+  border-radius: 50%;
+  padding: 1px;
+  background-color: rgba(56, 55, 55, 0.5);
+  color: white;
+  cursor: pointer;
+}
+
 
 .link-container:hover{
     transform: scale(1.1);

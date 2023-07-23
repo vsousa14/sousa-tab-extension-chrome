@@ -15,8 +15,9 @@ newButton.addEventListener("click", () => {
     event.preventDefault(); // We don't want to submit this fake form
     let webText = document.getElementById("newLinkName").value;
     let webLink = document.getElementById("newLinkUrl").value;
-    
+    let itemId = generateId();
     let item = {
+        id: itemId,
         text: webText,
         url: webLink
         };
