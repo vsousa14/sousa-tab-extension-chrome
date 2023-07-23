@@ -1,4 +1,5 @@
 function renderItem(category){
+    console.log("Category: ", category)
     fetch(`https://source.unsplash.com/${window.screen.width}x${window.screen.height}/?${category}`).then((response) => {   
         document.body.style.backgroundImage = `url(${response.url})`; 
         document.body.style.backgroundPosition = `center`; 

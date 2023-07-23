@@ -74,7 +74,14 @@
     </div>
 
     <script>
+
+        function generateId(usedIds){
+
+        }
+
         categoryArr = ["nature","mountains","city","beach","winter","summer","animals"];
+        userCategories = [];
+        var savedCategories = JSON.parse(localStorage.getItem("categories"));
         window.onload = () => {
             let setupWin = document.getElementById("setup");
             const username = localStorage.getItem("username");
@@ -84,8 +91,9 @@
                 setupWin.style.display = "none";
                 let greetingEl = document.getElementById("greeting")
             greetingEl.innerHTML = `${loadGreeting()}, ${username}`;
-            let randomCat = Math.floor(Math.random() * categoryArr.length);
-            renderItem(categoryArr[randomCat]);
+            let randomCat = Math.floor(Math.random() * savedCategories.length);
+                renderItem(savedCategories[randomCat]);
+            
             loadSavedLinks();
             let linksWrapper = document.querySelectorAll(".links-wrapper");
             for(let i = 0; i<=linksWrapper[0].children.length-1; i++){
